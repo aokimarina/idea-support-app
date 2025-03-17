@@ -167,64 +167,89 @@
 │  ├─ ERdiagram.png               # ER図
 │  ├─ product_requirements-doc.md # 製品要求仕様書
 │  └─ test_plan.md                # テスト計画書
-├─ frontend/                      # フロントエンド関連ディレクトリ
-│  ├─ __mocks__/                  # テスト用モックデータ
-│  ├─ .next/                      # Next.jsビルド出力
-│  ├─ .swc/                       # SWCコンパイルキャッシュ
-│  ├─ .vscode/                    # VSCode設定
-│  │     └─ settings.json         # VSCode用の設定ファイル
-│  ├─ coverage/                   # テストカバレッジレポート
-│  ├─ logs/                       # ログディレクトリ
-│  ├─ pages/                      # Next.jsページ関連ファイル
-│  │  └─ api/                     # APIルート定義
-│  │     └─ manual-input.ts       # マニュアル入力用API
-│  ├─ public/                     # 静的ファイルディレクトリ
-│  ├─ src/                        # アプリケーションソースコード
-│  │  ├─ app/                     # アプリケーションメイン機能
-│  │  │  ├─ components/           # 再利用可能なコンポーネント
-│  │  │  ├─ config/               # 設定ファイル
-│  │  │  ├─ daily-tracking/       # 日々の記録機能
-│  │  │  ├─ emotional-analysis/   # 感情分析機能
-│  │  │  ├─ generate-yokai        # 妖怪生成機能
-│  │  │  ├─ login/                # ログインページ
-│  │  │  ├─ manual/               # マニュアル関連
-│  │  │  │  └─ generate/          # マニュアル生成機能
-│  │  │  ├─ manual-input/         # マニュアル入力機能
-│  │  │  ├─ Navigation/           # メインメニュー
-│  │  │  ├─ setup/                # 初期設定
-│  │  │  ├─ Sign-up/              # 新規登録
-│  │  │  ├─ styles/               # CSSファイル格納ディレクトリ
-│  │  │  ├─ success/              # Stript決済完了
-│  │  │  ├─ yokai-result/         # 妖怪イラスト画像生成
-│  │  │  ├─ apiclient.tsx         # DjangoのAPI設定
-│  │  │  ├─ globals.css           # グローバルCSS
-│  │  │  ├─ layout.tsx            # レイアウトファイル
-│  │  │  ├─ page.module.css       # トップページのCSS
-│  │  │  └─ page.tsx              # アプリのトップページ
-│  │  ├─ assets/                  # 画像生成時のアニメーション用
-│  │  ├─ data/                    # 取扱説明書用
-│  │  ├─ lib/                     # Stripe用
-│  │  ├─ services/                # API用
-│  │  └─ utils/                   # 汎用モジュール
-│  ├─ tests/                      # テスト関連ファイル
-│  ├─ .env                        # 環境変数設定ファイル
-│  ├─ .eslintrc.json              # ESLint設定ファイル
-│  ├─ .gitignore                  # Gitで追跡しないファイルリスト
-│  ├─ .nvmrc                      # Node.jsのバージョン指定
-│  ├─ .prettierrc                 # Prettier設定ファイル
-│  ├─ Dockerfile                  # Docker用設定ファイル
-│  ├─ global.d.ts                 # TypeScriptのグローバル型定義ファイル
-│  ├─ jest.config.ts              # Jestテスト設定ファイル
-│  ├─ jest.setup.ts               # Jestセットアップファイル
-│  ├─ next-env.d.ts               # Next.js環境型定義ファイル
-│  ├─ next.config.js              # Next.js設定ファイル
-│  ├─ package-lock.json           # npm依存関係ロックファイル
-│  ├─ package.json                # プロジェクトの依存関係・スクリプト定義
-│  ├─ README_Next.js.md           # Next.js固有のREADMEファイル
-│  ├─ README.md                   # フロントエンド全体のREADMEファイル
-│  └─ tsconfig.json               # TypeScript設定ファイル
-├─ .gitignore                     # Gitで追跡しないファイルリスト
-└─ README.md                      # プロジェクト概要を記載するファイル
+│
+│
+│
+│
+│
+│
+├─ frontend/                                 # フロントエンド関連ディレクトリ
+│  ├─ mocks                                  # テスト用モックデータ
+│  ├─ public/                                # 静的ファイルディレクトリ
+│  ├─ src/                                   # アプリケーションソースコード
+│  │  ├─ app/                                # アプリケーションメイン機能
+│  │  │  ├─ components/                      # 再利用可能なコンポーネント
+│  │  │  │   ├─ elements/              　
+│  │  │  │   │    ├─ buttons/                # ボタン機能
+│  │  │  │   │    │    └─ HomeButton.tsx     # ホームボタン
+│  │  │  │   │    └─ input/                  # 検索機能
+│  │  │  │   │         └─ input.tsx
+│  │  │  │   └─ layouts/                     #すべてのページで使うレイアウト
+│  │  │  │        ├─ footer/                 # フッター
+│  │  │  │        │    └─ page.tsx
+│  │  │  │        └─ header/                 # ヘッダー
+│  │  │  │           └─ page.tsx
+│  │  │  │
+│  │  │  │
+│  │  │  ├─ membersPage/                     # 会員のみ閲覧できるページ
+│  │  │  │    ├─ allPosts/                   # ポスト一覧(publicからのインポート？)
+│  │  │  │    │    └─ page.tsx     　　　　
+│  │  │  │    ├─ recruited/                  # 採用一覧(publicからのインポート？)
+│  │  │  │    │    └─ page.tsx    　　　　
+│  │  │  │    ├─ ideaPost/                   # 自分のポスト一覧
+│  │  │  │    │    └─ page.tsx     　
+│  │  │  │    ├─ meto/                       # meto一覧
+│  │  │  │    │    └─ page.tsx     　　　
+│  │  │  │    ├─ lookHistory/                # 閲覧履歴
+│  │  │  │    │    └─ page.tsx    　　　　　　
+│  │  │  │    ├─ contacts/                   # コンタクト
+│  │  │  │    │    └─ page.tsx    　　
+│  │  │  │    └─ page.tsx                    #メンバーページの統合ページ
+│  │  │  │
+│  │  │  │
+│  │  │  ├─ publicPage/                      # 全員閲覧できるページ
+│  │  │  │    ├─ allPosts/                   # ポスト一覧
+│  │  │  │    │    └─ page.tsx     　　　　
+│  │  │  │    ├─ recruited/                  # 採用一覧
+│  │  │  │    │    └─ page.tsx    　　　　
+│  │  │  │    └─ page.tsx                    #パブリックページの統合ページ
+│  │  │  │
+│  │  │  │
+│  │  │  │
+│  │  │  ├─ globals.css                      # グローバルCSS
+│  │  │  ├─ layout.tsx                       # レイアウトファイル
+│  │  │  └─ page.tsx                         # アプリのトップページ
+│  │  │
+│  │  │
+│  │  │
+│  │  ├─ assets/                             # アニメーション用
+│  │  │  └─ page.tsx
+│  │  │
+│  │  │
+│  │  │
+│  │  └─ services/                           # API用
+│  │       ├─ideaPostAPI.tsx 　　　　
+│  │       ├─contactAPI.tsx　
+│  │       ├─lookHistoryAPI.tsx       　　　　
+│  │       ├─metoAPI.tsx
+│  │       ├─userIdAPI.tsx
+│  │       ├─usersAPI.tsx
+│  │       └─postsListAPI.tsx
+│  │
+│  ├─ tests/                                 # テスト関連ファイル
+│  ├─ .env                                   # 環境変数設定ファイル
+│  ├─ .eslintrc.json                         # ESLint設定ファイル
+│  ├─ .gitignore                             # Gitで追跡しないファイルリスト
+│  ├─ .prettierrc                            # Prettier設定ファイル
+│  ├─ Dockerfile                             # Docker用設定ファイル
+│  ├─ next-env.d.ts                          # Next.js環境型定義ファイル
+│  ├─ next.config.js                         # Next.js設定ファイル
+│  ├─ package-lock.json                      # npm依存関係ロックファイル
+│  ├─ package.json                           # プロジェクトの依存関係・スクリプト定義
+│  ├─ README.md                              # フロントエンド全体のREADMEファイル
+│  └─ tsconfig.json                          # TypeScript設定ファイル
+├─ .gitignore                                # Gitで追跡しないファイルリスト
+└─ README.md                                 # プロジェクト概要を記載するファイル
 
 ```
 
