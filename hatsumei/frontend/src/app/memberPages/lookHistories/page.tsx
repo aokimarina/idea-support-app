@@ -1,7 +1,7 @@
 import React from "react";
 
-const LookHistoriesPage = () => {
-  return <div>lookHistoriesPage</div>;
+const LookHistoryPage = () => {
+  return <div>LookHistoryPage</div>;
 };
 
-export default LookHistoriesPage;
+export default LookHistoryPage;
