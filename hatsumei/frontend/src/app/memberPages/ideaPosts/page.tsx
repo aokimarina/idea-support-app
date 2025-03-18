@@ -2,6 +2,8 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { addIdeaPost } from "@/app/server/ideaPostAPI";
+import { IdeaPostType } from "@/types/types";
 
 export default function IdeaPostPage() {
   const router = useRouter();
@@ -10,22 +12,37 @@ export default function IdeaPostPage() {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
+  const [main_category, setMainCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:3001/api/inquiries", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, title, message }),
-    });
+    if (!name || !title || !message || !main_category || !subCategory) {
+      alert("すべてのフィールドを入力してください");
+      return;
+    }
 
-    if (res.ok) {
-      router.push("/contact/complete");
-    } else {
-      alert("送信に失敗しました");
+    const newIdeaPost: IdeaPostType = {
+      id: "newId", // モックデータ用の仮のID
+      user_id: "sampleUserId",
+      title: title,
+      message: message,
+      date: new Date().toISOString(),
+      main_category: main_category,
+      sub_category: subCategory,
+    };
+
+    try {
+      const addedPost = await addIdeaPost(newIdeaPost);
+      console.log("新しい投稿が追加されました", addedPost);
+      router.push("/idea-posts"); // 投稿後に投稿一覧ページなどに遷移
+    } catch (error) {
+      if (error instanceof Error) {
+        alert("投稿に失敗しました：" + error.message);
+      } else {
+        alert("投稿に失敗しました：不明なエラーが発生しました");
+      }
     }
   };
 
@@ -53,32 +70,30 @@ export default function IdeaPostPage() {
             onChange={(e) => setName(e.target.value)}
             name="user_name"
           />
-        </div>
-        <div>
-          <label htmlFor="name" className="block mb-2 text-gray-700">
-            Category
-          </label>
-          <input
-            type="text"
-            id="name"
-            className="w-full h-10 border border-gray-500 bg-white px-3 focus:outline-none"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            name="user_name"
-          />
-        </div>
+          <div>
+            <label htmlFor="main_category" className="block mb-2 text-gray-700">
+              Category
+            </label>
+            <input
+              type="text"
+              id="main_category"
+              className="w-full h-10 border border-gray-500 bg-white px-3 focus:outline-none"
+              value={main_category}
+              onChange={(e) => setMainCategory(e.target.value)}
+              name="main_category"
+            />
+          </div>
 
-        <div>
-          <label htmlFor="title" className="block mb-2 text-gray-700">
-            sub Category
+          <label htmlFor="sub_category" className="block mb-2 text-gray-700">
+            Sub Category
           </label>
           <input
             type="text"
-            id="title"
+            id="sub_category"
             className="w-full h-10 border border-gray-500 bg-white px-3 focus:outline-none"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            name="title"
+            value={subCategory}
+            onChange={(e) => setSubCategory(e.target.value)}
+            name="sub_category"
           />
         </div>
 

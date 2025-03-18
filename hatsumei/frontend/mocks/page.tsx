@@ -33,20 +33,19 @@ const users = [
   },
 ];
 
-const ideaPosts = [
+const idea_posts = [
   {
-    id: 1,
-    user_id: 1,
+    id: "1",
+    user_id: "1",
     title: "音声で買い物リストを作成",
-    message:
-      "音声で買い物リストを作成してくれるアプリが欲しいです。いつも行くイオンについたらお知らせが来てほしいです。買い忘れ防止になります",
+    message: "音声で買い物リストを作成してくれるアプリが欲しいです。",
     date: "2025-03-18T10:00:00",
-    main_category: "便利グッズ",
+    main_category: "グッズ",
     sub_category: "アプリ",
   },
   {
-    id: 2,
-    user_id: 2,
+    id: "2",
+    user_id: "2",
     title: "ミニトマトを1個売り",
     message: "ミニトマトを1個から買えるようにしてほしい",
     date: "2025-03-18T11:00:00",
@@ -54,18 +53,17 @@ const ideaPosts = [
     sub_category: "野菜",
   },
   {
-    id: 3,
-    user_id: 3,
+    id: "3",
+    user_id: "3",
     title: "ベビーフードの販売機",
-    message:
-      "ベビーフードの販売機が欲しいです。ミルクが売っていてもいてもいいな～と思ったりします。",
+    message: "ベビーフードの販売機が欲しいです。",
     date: "2025-03-18T12:00:00",
     main_category: "育児",
     sub_category: "食事",
   },
   {
-    id: 4,
-    user_id: 4,
+    id: "4",
+    user_id: "1",
     title: "子供用レンタサイクル",
     message: "子供を乗せられるレンタサイクルが欲しいです。",
     date: "2025-03-18T13:00:00",
@@ -73,8 +71,8 @@ const ideaPosts = [
     sub_category: "交通",
   },
   {
-    id: 5,
-    user_id: 1,
+    id: "5",
+    user_id: "1",
     title: "遮音性イヤホン",
     message:
       "遮音性って言っても遮音できないものが多いので室内用でいいから凄く遮音してくれるものが欲しい。",
@@ -83,8 +81,8 @@ const ideaPosts = [
     sub_category: "交通",
   },
   {
-    id: 6,
-    user_id: 2,
+    id: "6",
+    user_id: "2",
     title: "歌がうまくなるマイク",
     message: "---------------------",
     date: "2025-03-18T13:00:00",
@@ -92,8 +90,8 @@ const ideaPosts = [
     sub_category: "交通",
   },
   {
-    id: 7,
-    user_id: 3,
+    id: "7",
+    user_id: "3",
     title: "自動計算買い物かご",
     message: "---------------------",
     date: "2025-03-18T13:00:00",
@@ -101,8 +99,8 @@ const ideaPosts = [
     sub_category: "交通",
   },
   {
-    id: 8,
-    user_id: 1,
+    id: "8",
+    user_id: "1",
     title: "傷み具合判定機能",
     message: "------------------",
     date: "2025-03-18T13:00:00",
@@ -111,11 +109,35 @@ const ideaPosts = [
   },
 ];
 
-const meto = [
-  { id: 1, user_id: 1, idea_post_id: 2 }, // user1 が投稿2（ミニトマト）をお気に入り
-  { id: 2, user_id: 2, idea_post_id: 3 }, // user2 が投稿3（ベビーフード）をお気に入り
-  { id: 3, user_id: 3, idea_post_id: 4 }, // user3 が投稿4（レンタサイクル）をお気に入り
-  { id: 4, user_id: 4, idea_post_id: 1 }, // user4 が投稿1（音声アプリ）をお気に入り
+const metos = [
+  { id: "1", user_id: "1", idea_post_id: "2" },
+  { id: "2", user_id: "2", idea_post_id: "3" },
+  { id: "3", user_id: "3", idea_post_id: "4" },
+  { id: "4", user_id: "1", idea_post_id: "1" },
 ];
 
-export { users, ideaPosts, meto };
+const forms = [
+  {
+    id: 1,
+    user_id: 1,
+    title: "機能が使いにく",
+    message: "もう少し読みやすいフォントにしてほしい",
+    date: "2025-03-18T13:00:00",
+  },
+  {
+    id: 2,
+    user_id: 1,
+    title: "ポイント還元がおそい",
+    message: "1か月くらいでもらえませんか",
+    date: "2025-03-18T13:00:00",
+  },
+  {
+    id: 3,
+    user_id: 1,
+    title: "子供の意見",
+    message: "大人だけでなく子供の意見もくみ取ってほしい",
+    date: "2025-03-18T13:00:00",
+  },
+];
+
+export { users, idea_posts, metos };

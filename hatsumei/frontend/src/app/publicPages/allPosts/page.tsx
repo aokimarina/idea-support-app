@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useWindowSize } from "../../../../hooks/GetWindowSize";
-import { users, ideaPosts } from "../../../../mocks/page"; // モックデータをインポート
+import { users, idea_posts } from "../../../../mocks/page";
 
 const AllPostPage = () => {
   const { height, width } = useWindowSize();
@@ -15,8 +15,10 @@ const AllPostPage = () => {
           -- All Posts --
         </h1>
         <ul className="space-y-4">
-          {ideaPosts.slice(0, 5).map((post, index) => {
-            const user = users.find((u) => u.id === post.user_id);
+          {idea_posts.slice(0, 5).map((post, index) => {
+            const user = users.find(
+              (u) => String(u.id) === String(post.user_id)
+            );
 
             return (
               <li key={index} className="border-b pb-10">

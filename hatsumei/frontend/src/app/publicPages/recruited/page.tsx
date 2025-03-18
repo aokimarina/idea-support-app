@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { useWindowSize } from "../../../../hooks/GetWindowSize";
-import { users, ideaPosts } from "../../../../mocks/page"; // モックデータをインポート
+import { users, idea_posts } from "../../../../mocks/page"; // モックデータをインポート
 
 const RecruitedPage = () => {
   const { height, width } = useWindowSize();
@@ -27,7 +27,7 @@ const RecruitedPage = () => {
         <div className="px-3 max-w-screen-xl w-full">
           <div className="flex overflow-x-auto py-4 px-2 gap-4">
             {" "}
-            {ideaPosts.map((post, index) => {
+            {idea_posts.map((post, index) => {
               const user = users.find((u) => u.id === post.user_id);
               const image = images[index % images.length];
 

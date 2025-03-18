@@ -1,5 +1,5 @@
 // ユーザー情報の型定義
-export type User = {
+export type UserType = {
   id: string;
   email: string;
   firebase_uid: string;
@@ -9,7 +9,7 @@ export type User = {
 };
 
 // アイデア投稿の型定義
-export type IdeaPost = {
+export type IdeaPostType = {
   id: string;
   user_id: string;
   title: string;
@@ -19,10 +19,16 @@ export type IdeaPost = {
   sub_category: string;
 };
 
-export type Form = {
+export type FormType = {
   id: string;
   user_id: string;
   date: string;
-  text: string;
+  message: string;
   title: string;
+};
+
+export type MetoType = {
+  id: string;
+  user_id: string;
+  idea_post_id: string;
 };
