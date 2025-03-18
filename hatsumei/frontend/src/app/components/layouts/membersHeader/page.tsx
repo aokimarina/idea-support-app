@@ -4,17 +4,14 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const MembersHeaderPage = () => {
-  // メニューの開閉状態を管理するステート
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // メニューの開閉を切り替える関数
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
 
   return (
     <section className="flex flex-col justify-center items-center w-full h-full pt-10 pb-10 bg-gray-300 relative">
-      {/* タイトル */}
       <div className="font-bold text-[40px]">---- HATSUMEI ---💡</div>
 
       {/* ハンバーガーメニューボタン */}
@@ -24,7 +21,7 @@ const MembersHeaderPage = () => {
       >
         <div className="w-8 h-1 bg-black mb-2"></div>
         <div className="w-8 h-1 bg-black mb-2"></div>
-        <div className="w-8 h-1 bg-black"></div>
+        <div className="w-8 h-1 bg-black mb-2"></div>
       </div>
 
       {/* メニュー */}
