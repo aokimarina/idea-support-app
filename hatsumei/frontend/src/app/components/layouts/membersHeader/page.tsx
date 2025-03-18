@@ -53,6 +53,9 @@ const MembersHeaderPage = () => {
                 <button className="w-full text-left">コンタクト</button>
               </a>
             </li>
+            <li>
+              <button className="w-full text-left">ログアウト</button>
+            </li>
           </ul>
         </div>
       )}
