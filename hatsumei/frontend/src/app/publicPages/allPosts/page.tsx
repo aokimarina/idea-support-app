@@ -11,7 +11,9 @@ const AllPostPage = () => {
       className={`flex justify-center items-center h-[${height}px] w-[${width}px] bg-white`}
     >
       <div className="w-full max-w-4xl px-4 py-6">
-        <h1 className="text-xl font-semibold mb-10">-- All Posts --</h1>
+        <h1 className="flex justify-center text-3xl font-bold mb-10">
+          -- All Posts --
+        </h1>
         <ul className="space-y-4">
           {ideaPosts.slice(0, 5).map((post, index) => {
             const user = users.find((u) => u.id === post.user_id);

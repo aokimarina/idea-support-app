@@ -2,7 +2,7 @@
 
 import React from "react";
 import IdeaPostsPage from "@/app/memberPages/ideaPosts/page";
-import LookHistoriesPage from "@/app/memberPages/lookHistories/page";
+import LookHistoriesPage from "@/app/memberPages/viewHistories/page";
 import RecruitedPage from "@/app/publicPages/recruited/page";
 import AllPostPage from "@/app/publicPages/allPosts/page";
 import ContactsPage from "@/app/memberPages/contacts/page";
