@@ -1,7 +1,7 @@
 import React from "react";
 
-const headerPage = () => {
+const HeaderPage = () => {
   return <div>headerPage</div>;
 };
 
-export default headerPage;
+export default HeaderPage;

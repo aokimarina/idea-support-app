@@ -1,7 +1,7 @@
 import React from "react";
 
-const allPostPage = () => {
-  return <div>allPostPage</div>;
+const AllPostPage = () => {
+  return <div>All Post Page</div>;
 };
 
-export default allPostPage;
+export default AllPostPage;

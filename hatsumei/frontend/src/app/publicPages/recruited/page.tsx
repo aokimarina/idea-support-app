@@ -1,7 +1,7 @@
 import React from "react";
 
-const recruitedPage = () => {
+const RecruitedPage = () => {
   return <div>recruitedPage</div>;
 };
 
-export default recruitedPage;
+export default RecruitedPage;

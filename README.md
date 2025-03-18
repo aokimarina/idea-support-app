@@ -381,4 +381,4 @@ git clone https://github.com/ms-engineer-bc25-02/TeamD_Section7.git
 
 ## 開発チーム
 
-このプロジェクトは 2503 期 Team D が開発しています。
+このプロジェクトは 2502 期 Team D が開発しています。

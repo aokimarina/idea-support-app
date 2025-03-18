@@ -1,7 +1,7 @@
 import React from "react";
 
-const ideaPostsPage = () => {
+const IdeaPostsPage = () => {
   return <div>ideaPostsPage</div>;
 };
 
-export default ideaPostsPage;
+export default IdeaPostsPage;
