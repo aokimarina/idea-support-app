@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_hatsumei
+    restart: always
+    environment:
+      POSTGRES_USER: sasao_user
+      POSTGRES_PASSWORD: sasao_pass
+      POSTGRES_DB: sasao_data
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_hatsumei:/var/lib/postgresql/data
+
+volumes:
+  postgres_hatsumei:
