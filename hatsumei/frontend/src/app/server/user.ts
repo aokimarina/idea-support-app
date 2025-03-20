@@ -14,34 +14,54 @@ export const fetchUsers = async (): Promise<UserType[]> => {
 };
 
 //--------------------GET/id---------------------
-export const fetchUsersId = async (id: number) => {
-  const response = await fetch("http://localhost:5000/users/${id}");
-  console.log("----------バックエンドからのUseeデータ---------------");
-  console.log(response);
+// export const fetchUsersId = async (id: string) => {
+//   const response = await fetch(`http://localhost:5000/users/${id}`);
+//   console.log("----------バックエンドからのUseeデータ---------------");
+//   console.log(response);
 
+//   if (!response.ok) {
+//     throw new Error(`データの取得に失敗しました: ${await response.text()}`);
+//   }
+//   const IdData = await response.json();
+//   return IdData;
+// };
+export const fetchUsersId = async (firebaseUid: string) => {
+  const response = await fetch(`http://localhost:5000/users/${firebaseUid}`);
   if (!response.ok) {
     throw new Error(`データの取得に失敗しました: ${await response.text()}`);
   }
-  const IdData = await response.json();
-  return IdData;
+  return await response.json();
 };
+
 
 //--------------------PUT---------------------
-export const updateUser = async (id: number, data: UserType) => {
-  const response = await fetch(`http://localhost:5000/users/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
+// export const updateUser = async (id: string, data: UserType) => {
+//   const response = await fetch(`http://localhost:5000/users/${id}`, {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(data),
+//   });
 
-  if (!response.ok) {
-    throw new Error(`データの更新に失敗しました:  ${await response.text()}`);
-  }
+//   if (!response.ok) {
+//     throw new Error(`データの更新に失敗しました:  ${await response.text()}`);
+//   }
 
-  const renewalData = await response.json();
-  return renewalData;
-};
+//   const renewalData = await response.json();
+//   return renewalData;
+// };
+export const updateUser = async (user: UserType) => {
+    const response = await fetch("http://localhost:5000/users", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
+    if (!response.ok) {
+      throw new Error(`データの更新に失敗しました: ${await response.text()}`);
+    }
+    return await response.json();
+  };
 
+  
 //--------------------POST---------------------
 export const addUser = async (data: Omit<UserType, "id">) => {
   const response = await fetch(`http://localhost:5000/users`, {

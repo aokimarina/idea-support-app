@@ -12,7 +12,7 @@ const CreateAccountForm = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState(""); // 名前に変更
   const [lastName, setLastName] = useState(""); // 姓を追加
-  const [nickname, setNickname] = useState("");
+  // const [nickname, setNickname] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
@@ -32,7 +32,7 @@ const CreateAccountForm = () => {
         firebase_uid: user.uid,
         first_name: firstName,
         last_name: lastName,
-        nickname: nickname,
+        // nickname: nickname,
       };
 
       await addUser(newUser);
@@ -82,7 +82,7 @@ const CreateAccountForm = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4"> TODO:後で追加するかも
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nickname">
             ニックネーム
           </label>
@@ -95,7 +95,7 @@ const CreateAccountForm = () => {
             onChange={(e) => setNickname(e.target.value)}
             required
           />
-        </div>
+        </div> */}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
             メールアドレス

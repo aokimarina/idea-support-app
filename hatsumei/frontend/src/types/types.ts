@@ -5,7 +5,7 @@ export type UserType = {
   firebase_uid: string;
   first_name: string;
   last_name: string;
-  nickname: string;
+  // nickname: string;
 };
 
 // アイデア投稿の型定義
@@ -31,4 +31,10 @@ export type MetoType = {
   id: string;
   user_id: string;
   idea_post_id: string;
+  firebase_uid: string;
 };
+export interface SearchResults {
+  id: string; 
+  title:string;
+  text:string;
+}

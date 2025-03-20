@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useWindowSize } from "../../../../../hooks/GetWindowSize";
+// import { useWindowSize } from "../../../../../hooks/GetWindowSize";
 import { metos, idea_posts } from "../../../../../mocks/page";
 import { IdeaPostType, MetoType } from "@/types/types";
 
@@ -9,14 +9,14 @@ interface LookHistoryPageProps {
 }
 
 const LookHistoryPage: React.FC<LookHistoryPageProps> = ({ firebase_uid }) => {
-  const { height, width } = useWindowSize();
+  // const { height, width } = useWindowSize();
   const [likedPosts, setLikedPosts] = useState<IdeaPostType[]>([]);
   const [currentMetos, setCurrentMetos] = useState<MetoType[]>(metos);
 
   useEffect(() => {
     const fetchLikedPosts = async () => {
       const postIds = currentMetos
-        .filter((meto: MetoType) => meto.user_id === firebase_uid) // 🔥 uid に紐づく Meto を取得
+        .filter((meto: MetoType) => meto.firebase_uid === firebase_uid) // 🔥 uid に紐づく Meto を取得
         .map((meto: MetoType) => meto.idea_post_id);
 
       const likedPosts = idea_posts.filter((post: IdeaPostType) =>
@@ -40,18 +40,17 @@ const LookHistoryPage: React.FC<LookHistoryPageProps> = ({ firebase_uid }) => {
 
   return (
     <section
-      className="flex justify-center items-center bg-white"
-      style={{ height: `${height}px`, width: `${width}px` }}
+      className="flex justify-center items-center bg-white mt-10 mr-10 -ml-12"
     >
-      <div className="w-full max-w-4xl px-4 py-6">
-        <h1 className="flex justify-center text-3xl font-bold mb-10">
-          -- Metoした投稿 --
+      <div className="w-full max-w-4xl px-4 py-6 bg-gray-100">
+        <h1 className="flex justify-center text-blue-950 font-bold mt-5 mb-10 text-2xl">
+          Meto
         </h1>
         <ul className="space-y-4">
           {likedPosts.length > 0 ? (
             likedPosts.map((post, index) => {
               return (
-                <li key={index} className="border-b pb-10">
+                <li key={index} className="border-t border-white pt-5">
                   <div className="flex justify-between items-center">
                     <div>
                       <div className="text-lg font-bold">{post.title}</div>
@@ -66,16 +65,16 @@ const LookHistoryPage: React.FC<LookHistoryPageProps> = ({ firebase_uid }) => {
                     </div>
                     <button
                       onClick={() => handleDeleteMeto(post.id)}
-                      className="text-red-500 hover:text-red-700"
+                      className="text-gray-700 hover:bg-blue-950 transition-all duration-400 hover:text-white rounded-full p-2 bg-white"
                     >
-                      削除
+                     cancel
                     </button>
                   </div>
                 </li>
               );
             })
           ) : (
-            <p>No liked posts found</p>
+            <p>No Meto</p>
           )}
         </ul>
       </div>

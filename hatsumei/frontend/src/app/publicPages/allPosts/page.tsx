@@ -8,13 +8,13 @@ const AllPostPage = () => {
 
   return (
     <section
-      className={`flex justify-center items-center h-[${height}px] w-[${width}px] bg-white`}
+      className={`flex justify-center items-center h-[${height}px] w-[${width}px] bg-white -ml-12`}
     >
       <div className="w-full max-w-4xl px-4 py-6">
-        <h1 className="flex justify-center text-3xl font-bold mb-10">
-          -- All Posts --
+        <h1 className="flex justify-center text-3xl mb-12 text-blue-950">
+          All Posts 
         </h1>
-        <ul className="space-y-4">
+        <ul className="space-y-4 mt-3">
           {idea_posts.slice(0, 5).map((post, index) => {
             const user = users.find(
               (u) => String(u.id) === String(post.user_id)

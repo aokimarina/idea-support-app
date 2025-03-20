@@ -1,8 +1,6 @@
 // "use client";
 
 import { useState, useRef } from "react";
-// import { useRouter } from "next/navigation";
-// import emailjs from "emailjs-com";
 import emailjs from '@emailjs/browser';
 
 export default function IdeaPostPage() {

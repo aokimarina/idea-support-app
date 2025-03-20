@@ -1,19 +1,38 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "@/firebase";
 import { signOut } from "firebase/auth";
-import { useRouter } from 'next/navigation';
-import Link from 'next/link'; // Linkコンポーネントをインポート
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+// import { UserType } from "@/types/types";
 
-const MembersHeaderPage = () => {
+interface MembersHeaderProps {
+  firebase_uid: string; // 親コンポーネントから受け取る `uid`
+}
+
+const MembersHeaderPage: React.FC<MembersHeaderProps> = ({ firebase_uid }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+  // const [currentMetos, setCurrentUsers] = useState<UserType[]>([]);
+  const [localFirebaseUid, setLocalFirebaseUid] = useState<string | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setLocalFirebaseUid(user.uid);
+      } else {
+        setLocalFirebaseUid(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
 
-  const router = useRouter();
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -24,7 +43,7 @@ const MembersHeaderPage = () => {
   };
 
   return (
-    <section className="flex flex-row justify-center items-center w-full h-full pt-10 pb-10 bg-gray-300 relative z-0">
+    <section className="flex flex-row justify-center items-center w-full h-full pt-10 pb-10 bg-gray-100 relative z-0">
       <div className="font-bold text-[25px] fixed top-6 left-5 w-full bhutuka-expanded-one-regular [font-family:'Bungee Shade',sans-serif]">
         HATSUMEI💡
       </div>
@@ -36,9 +55,21 @@ const MembersHeaderPage = () => {
         aria-label="メニューを開く"
       >
         <div className="space-y-1.5">
-          <div className={`h-1 w-8 bg-black transition-transform duration-300 ${isMenuOpen ? 'rotate-45 translate-y-3' : ''}`}></div>
-          <div className={`h-1 w-8 bg-black transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></div>
-          <div className={`h-1 w-8 bg-black transition-transform duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-3' : ''}`}></div>
+          <div
+            className={`h-1 w-7 bg-blue-900 transition-transform duration-300 ${
+              isMenuOpen ? "rotate-45 translate-y-3" : ""
+            }`}
+          ></div>
+          <div
+            className={`h-1 w-7 bg-blue-900 transition-opacity duration-300 ${
+              isMenuOpen ? "opacity-0" : ""
+            }`}
+          ></div>
+          <div
+            className={`h-1 w-7 bg-blue-900 transition-transform duration-300 ${
+              isMenuOpen ? "-rotate-45 -translate-y-3" : ""
+            }`}
+          ></div>
         </div>
       </button>
 
@@ -46,10 +77,22 @@ const MembersHeaderPage = () => {
       {isMenuOpen && (
         <div className="absolute top-16 right-10 bg-white shadow-lg p-4 rounded-lg w-48">
           <ul className="flex flex-col space-y-4">
-          <li>
-              <Link href="#allPostPage" onClick={() => setIsMenuOpen(false)}>
+            <li>
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  // ハードリロードを試みる
+                  window.location.href = "/userAdmin";
+                }}
+                className="w-full text-left cursor-pointer"
+              >
+                ユーザー情報
+              </button>
+            </li>
+            <li>
+              {/* <Link href="#allPostPage" onClick={() => setIsMenuOpen(false)}>
                 <button className="w-full text-left">AllPost</button>
-              </Link>
+              </Link> */}
             </li>
             <li>
               <Link href="#ideaPostsPage" onClick={() => setIsMenuOpen(false)}>
@@ -57,7 +100,10 @@ const MembersHeaderPage = () => {
               </Link>
             </li>
             <li>
-              <Link href="#lookHistoriesPage" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="#lookHistoriesPage"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <button className="w-full text-left">Meto一覧</button>
               </Link>
             </li>
@@ -66,7 +112,6 @@ const MembersHeaderPage = () => {
                 <button className="w-full text-left">採用された投稿</button>
               </Link>
             </li>
-
             <li>
               <Link href="#contactPages" onClick={() => setIsMenuOpen(false)}>
                 <button className="w-full text-left">Contact</button>
@@ -74,7 +119,10 @@ const MembersHeaderPage = () => {
             </li>
             <li>
               <button
-                onClick={() => { handleLogout(); setIsMenuOpen(false); }}
+                onClick={() => {
+                  handleLogout();
+                  setIsMenuOpen(false);
+                }}
                 className="w-full text-left cursor-pointer"
               >
                 Logout

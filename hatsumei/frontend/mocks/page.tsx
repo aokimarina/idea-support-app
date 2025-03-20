@@ -110,10 +110,10 @@ const idea_posts = [
 ];
 
 const metos = [
-  { id: "1", user_id: "1", idea_post_id: "2" },
+  { id: "1", user_id: "1", idea_post_id: "2" , firebase_uid: "F3Tpfw7PQJT9fKOu2tIU2laKcS43"},
   { id: "2", user_id: "2", idea_post_id: "3" },
   { id: "3", user_id: "3", idea_post_id: "4" },
-  { id: "4", user_id: "1", idea_post_id: "1" },
+  { id: "4", user_id: "1", idea_post_id: "1" , firebase_uid: "F3Tpfw7PQJT9fKOu2tIU2laKcS43"},
 ];
 
 const forms = [

@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   User,
@@ -32,24 +31,6 @@ const Login = () => {
     });
     return () => unsubscribe();
   }, []);
-
-  // // 新規登録処理
-  // const handleRegister = async () => {
-  //   setLoading(true);
-  //   try {
-  //     await createUserWithEmailAndPassword(auth, email, password);
-  //     alert("登録ページに移動します");
-  //     router.push("/createAccountForm")
-  //   } catch (error) {
-  //     alert(
-  //       "登録ページに移動できませんでした（" +
-  //         (error instanceof Error ? error.message : "不明なエラー") +
-  //         "）"
-  //     );
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
 
   // 新規登録ページへ遷移
@@ -104,7 +85,7 @@ const handleRegister = () => {
               <>
                 <button
                   onClick={handleRegister}
-                  className="ml-4 bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-6 rounded transition-all duration-200 active:scale-95 cursor-pointer"
+                  className="ml-4 bg-blue-900 hover:bg-blue-950 text-white font-bold py-2 px-6 rounded transition-all duration-200 active:scale-95 cursor-pointer"
                   disabled={loading}
                 >
                   {loading ? "Registering..." : "新規登録"}
