@@ -3,7 +3,6 @@ import { M_PLUS_1p } from "next/font/google";
 import "./globals.css";
 
 import { ReactNode } from "react";
-import HeaderPage from "./components/layouts/header/page";
 import { useWindowSize } from "../../hooks/GetWindowSize"; // フックをインポート
 
 const m_PLUS_1p = M_PLUS_1p({

@@ -1,10 +1,11 @@
 "use client";
-import Image from "next/image";
+// import Image from "next/image";
 import AllPostPage from "./publicPages/allPosts/page";
 import RecruitedPage from "./publicPages/recruited/page";
-import FooterPage from "./components/layouts/footer/page";
-import HeaderPage from "./components/layouts/header/page";
+import FooterPage from "./components/layouts/footer";
+import HeaderPage from "./components/layouts/header";
 import { useWindowSize } from "../../hooks/GetWindowSize";
+import ScrollToTopButton from "./components/elements/buttons/HomeButton";
 
 export default function Home() {
   const { height, width } = useWindowSize();
@@ -18,6 +19,7 @@ export default function Home() {
 
       <RecruitedPage />
       <AllPostPage />
+      <ScrollToTopButton />
       <FooterPage />
     </div>
   );

@@ -1,11 +1,11 @@
 const users = [
   {
     id: 1,
-    email: "user1@example.com",
-    firebase_uid: "uid_abc123",
-    first_name: "太郎",
-    last_name: "山田",
-    nickname: "たろぴ",
+    email: "msasaki11142@gmail.com",
+    firebase_uid: "F3Tpfw7PQJT9fKOu2tIU2laKcS43",
+    first_name: "sasaki",
+    last_name: "madoka",
+    nickname: "てるちゃん",
   },
   {
     id: 2,

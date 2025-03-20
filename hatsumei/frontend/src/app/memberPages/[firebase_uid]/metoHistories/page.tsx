@@ -1,18 +1,22 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useWindowSize } from "../../../../hooks/GetWindowSize";
-import { metos, idea_posts } from "../../../../mocks/page";
+import { useWindowSize } from "../../../../../hooks/GetWindowSize";
+import { metos, idea_posts } from "../../../../../mocks/page";
 import { IdeaPostType, MetoType } from "@/types/types";
 
-const LookHistoryPage = () => {
+interface LookHistoryPageProps {
+  firebase_uid: string; // 親コンポーネントから受け取る `uid`
+}
+
+const LookHistoryPage: React.FC<LookHistoryPageProps> = ({ firebase_uid }) => {
   const { height, width } = useWindowSize();
   const [likedPosts, setLikedPosts] = useState<IdeaPostType[]>([]);
-  const [currentMetos, setCurrentMetos] = useState<MetoType[]>(metos); // Metoの状態も管理
+  const [currentMetos, setCurrentMetos] = useState<MetoType[]>(metos);
 
   useEffect(() => {
     const fetchLikedPosts = async () => {
       const postIds = currentMetos
-        .filter((meto: MetoType) => meto.user_id === "1") // "currentidに変更する"
+        .filter((meto: MetoType) => meto.user_id === firebase_uid) // 🔥 uid に紐づく Meto を取得
         .map((meto: MetoType) => meto.idea_post_id);
 
       const likedPosts = idea_posts.filter((post: IdeaPostType) =>
@@ -23,18 +27,15 @@ const LookHistoryPage = () => {
     };
 
     fetchLikedPosts();
-  }, [currentMetos]); // currentMetos が変わるたびに再レンダリングされる
+  }, [currentMetos, firebase_uid]); // uid が変わるたびにデータを取得
 
   // Meto（いいね）を削除する関数
   const handleDeleteMeto = (postId: string) => {
-    // Meto削除処理
     const updatedMetos = currentMetos.filter(
-      (meto: MetoType) => meto.idea_post_id !== postId || meto.user_id !== "1" // "currentidに変更する"
+      (meto: MetoType) => meto.idea_post_id !== postId || meto.user_id !== firebase_uid
     );
-    setCurrentMetos(updatedMetos); // 状態更新
-
-    // likedPostsも更新
-    setLikedPosts(likedPosts.filter((post) => post.id !== postId)); // 同じIDの投稿を削除
+    setCurrentMetos(updatedMetos);
+    setLikedPosts(likedPosts.filter((post) => post.id !== postId));
   };
 
   return (
