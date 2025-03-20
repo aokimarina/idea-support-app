@@ -46,6 +46,7 @@ const MembersHeaderPage: React.FC<MembersHeaderProps> = ({ firebase_uid }) => {
     <section className="flex flex-row justify-center items-center w-full h-full pt-10 pb-10 bg-gray-100 relative z-0">
       <div className="font-bold text-[25px] fixed top-6 left-5 w-full bhutuka-expanded-one-regular [font-family:'Bungee Shade',sans-serif]">
         HATSUMEI💡
+
       </div>
 
       {/* ハンバーガーメニューボタン */}

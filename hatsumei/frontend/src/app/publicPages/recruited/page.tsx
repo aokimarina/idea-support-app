@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { users, idea_posts } from "../../../../mocks/page";
 
 const RecruitedPage = () => {
@@ -15,9 +16,11 @@ const RecruitedPage = () => {
   ];
 
   return (
-    <section className="mt-28">
-      <div className="flex justify-center items-center mt-10 text-2xl rampart-one-regular">
-        叶った
+    <section className="mt-28 ">
+      <div className="flex justify-center items-center py-5 mt-10 text-3xl border-t-blue-950 border-b-blue-300 border-b-8 rampart-one-regular text-blue-950 font-bold">
+
+      Ideas realized
+  
       </div>
 
       <div className="flex justify-center items-center mb-20 bg-white relative">

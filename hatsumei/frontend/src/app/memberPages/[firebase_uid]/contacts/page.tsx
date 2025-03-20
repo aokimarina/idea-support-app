@@ -41,7 +41,7 @@ export default function IdeaPostPage() {
       id="contact"
       className="bg-gray-100 px-8 py-20 flex flex-col items-center"
     >
-      <h2 className="text-3xl font-bold mb-8 text-gray-700">Contact</h2>
+      <h2 className="text-3xl mb-8 text-gray-700">Contact</h2>
       <form
         ref={form}
         className="w-full max-w-lg flex flex-col space-y-6"
@@ -55,7 +55,7 @@ export default function IdeaPostPage() {
           <input
             type="text"
             id="name"
-            className="w-full h-10 border border-gray-500 bg-white px-3 focus:outline-none"
+            className="w-full h-10 border border-gray-500 bg-white px-3 focus:outline-none rounded-md"
             value={name}
             onChange={(e) => setName(e.target.value)}
             name="user_name"
@@ -70,7 +70,7 @@ export default function IdeaPostPage() {
           <input
             type="text"
             id="title"
-            className="w-full h-10 border border-gray-500 bg-white px-3 focus:outline-none"
+            className="w-full h-10 border border-gray-500 bg-white px-3 focus:outline-none rounded-md"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             name="title"
@@ -84,7 +84,7 @@ export default function IdeaPostPage() {
           </label>
           <textarea
             id="message"
-            className="w-full h-24 border border-gray-500 bg-white px-3 py-2 focus:outline-none resize-none"
+            className="w-full h-24 border border-gray-500 bg-white px-3 py-2 focus:outline-none resize-none rounded-md"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             name="message"
@@ -95,7 +95,7 @@ export default function IdeaPostPage() {
         <div className="flex justify-center mt-8">
           <button
             type="submit"
-            className="w-full max-w-xs bg-gray-300 text-gray-800 py-3 transition-colors duration-300 hover:bg-gray-400 active:bg-gray-500"
+            className="w-full max-w-2xs bg-gray-300 text-gray-800 py-3 transition-colors duration-300 hover:bg-gray-400 active:bg-gray-500 rounded-full"
           >
             Send
           </button>

@@ -146,7 +146,7 @@ export default function IdeaPostPage() {
           <div className="flex justify-center mt-8">
             <button
               type="submit"
-              className="w-full font-bold max-w-xs bg-gray-100 text-gray-800 py-3 border-2 border-transparent transition-colors duration-300 hover:border-blue-800 active:font-extrabold"
+              className="w-full font-bold max-w-xs bg-gray-100 text-gray-800 py-3 border-2 border-transparent rounded-full transition-colors duration-300 hover:border-blue-800 active:font-extrabold"
             >
               POST
             </button>

@@ -65,7 +65,7 @@ const LookHistoryPage: React.FC<LookHistoryPageProps> = ({ firebase_uid }) => {
                     </div>
                     <button
                       onClick={() => handleDeleteMeto(post.id)}
-                      className="text-gray-700 hover:bg-blue-950 transition-all duration-400 hover:text-white rounded-full p-2 bg-white"
+                      className="text-gray-700 hover:bg-blue-600 hover:text-white rounded-full py-1 px-2 bg-white"
                     >
                      cancel
                     </button>
