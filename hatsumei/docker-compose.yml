@@ -1,0 +1,56 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_hatsumei
+    restart: always
+    environment:
+      POSTGRES_USER: sasao_user
+      POSTGRES_PASSWORD: sasao_pass
+      POSTGRES_DB: postgres_hatsumei
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_hatsumei:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sasao_user -d postgres_hatsumei"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+
+  backend:
+    build: ./backend
+    container_name: backend_hatsumei
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://sasao_user:sasao_pass@postgres:5432/postgres_hatsumei
+      FLASK_APP: run.py
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/backend
+    command: ["/backend/entrypoint.sh"]
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: frontend_hatsumei
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     NEXT_PUBLIC_API_URL: "http://backend_hatsumei:5000"
+  #   depends_on:
+  #     backend:
+  #       condition: service_healthy
+  #   volumes:
+  #     - ./frontend:/frontend
+  #   command: ["npm", "run", "dev"]
+
+volumes:
+  postgres_hatsumei:
+    name: postgres_hatsumei

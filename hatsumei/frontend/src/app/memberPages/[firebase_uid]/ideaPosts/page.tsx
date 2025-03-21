@@ -6,7 +6,7 @@ import { addIdeaPost } from "@/app/server/ideaPost";
 import { IdeaPostType } from "@/types/types";
 
 export default function IdeaPostPage() {
-  const router = useRouter();
+  const router = useRouter(); 
   const form = useRef<HTMLFormElement>(null);
 
   const [name, setName] = useState("");

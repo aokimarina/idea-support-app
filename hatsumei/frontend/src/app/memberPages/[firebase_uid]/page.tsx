@@ -15,6 +15,7 @@ import { auth, db } from "@/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { users } from "../../../../mocks/page";
+// import UserAdminPage from "@/app/memberPages/[firebase_uid]/userAdmin/page";
 
 export default function MemberPage() {
   const [username, setUsername] = useState<string | null>(null);

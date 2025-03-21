@@ -5,6 +5,7 @@ import { auth } from "@/firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import UserAdminPage from "@/app/memberPages/[firebase_uid]/userAdmin/page";
 // import { UserType } from "@/types/types";
 
 interface MembersHeaderProps {
@@ -15,19 +16,6 @@ const MembersHeaderPage: React.FC<MembersHeaderProps> = ({ firebase_uid }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   // const [currentMetos, setCurrentUsers] = useState<UserType[]>([]);
-  const [localFirebaseUid, setLocalFirebaseUid] = useState<string | null>(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setLocalFirebaseUid(user.uid);
-      } else {
-        setLocalFirebaseUid(null);
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -42,6 +30,15 @@ const MembersHeaderPage: React.FC<MembersHeaderProps> = ({ firebase_uid }) => {
     }
   };
 
+  const handleuserAdmin = async () => {
+    try {
+      await signOut(auth);
+      router.push("/memberPages/${firebase_uid}/userAdmin");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  }
+
   return (
     <section className="flex flex-row justify-center items-center w-full h-full pt-10 pb-10 bg-gray-100 relative z-0">
       <div className="font-bold text-[25px] fixed top-6 left-5 w-full bhutuka-expanded-one-regular [font-family:'Bungee Shade',sans-serif]">
@@ -49,7 +46,7 @@ const MembersHeaderPage: React.FC<MembersHeaderProps> = ({ firebase_uid }) => {
 
       </div>
 
-      {/* ハンバーガーメニューボタン */}
+      {/* ハンバーガーメニュー */}
       <button
         className="absolute top-7 right-10 z-10 cursor-pointer"
         onClick={toggleMenu}
@@ -81,33 +78,23 @@ const MembersHeaderPage: React.FC<MembersHeaderProps> = ({ firebase_uid }) => {
             <li>
               <button
                 onClick={() => {
+                  handleuserAdmin();
                   setIsMenuOpen(false);
-                  // ハードリロードを試みる
-                  window.location.href = "/userAdmin";
                 }}
                 className="w-full text-left cursor-pointer"
               >
                 ユーザー情報
               </button>
             </li>
-            <li>
-              {/* <Link href="#allPostPage" onClick={() => setIsMenuOpen(false)}>
-                <button className="w-full text-left">AllPost</button>
-              </Link> */}
-            </li>
+
+
+
             <li>
               <Link href="#ideaPostsPage" onClick={() => setIsMenuOpen(false)}>
                 <button className="w-full text-left">アイデアを投稿する</button>
               </Link>
             </li>
-            <li>
-              <Link
-                href="#lookHistoriesPage"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <button className="w-full text-left">Meto一覧</button>
-              </Link>
-            </li>
+
             <li>
               <Link href="#recruitedPage" onClick={() => setIsMenuOpen(false)}>
                 <button className="w-full text-left">採用された投稿</button>
