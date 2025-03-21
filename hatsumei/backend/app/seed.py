@@ -8,17 +8,17 @@ def seed_data(app):
             db.create_all()
 
             # Userのシードデータ
-            user1 = User(email='user1@example.com', firebase_uid='firebase1', first_name='太郎', last_name='山田')
-            user2 = User(email='user2@example.com', firebase_uid='firebase2', first_name='花子', last_name='佐藤')
-            user3 = User(email='user3@example.com', firebase_uid='firebase3', first_name='健太', last_name='田中')
+            user1 = User(email='msasaki11142@gmail.com', firebase_uid='F3Tpfw7PQJT9fKOu2tIU2laKcS43', first_name='てるちゃん', last_name='ささき')
+            user2 = User(email='hinapi1124@gmail.com', firebase_uid='oSpuGGDVoTNQxQpVVK8KAMKunVy2', first_name='ひなた', last_name='ささき')
+            user3 = User(email='masasa2419@gmail.com', firebase_uid='vv3uRsN4rWYKlP81MTiP3nJASbn1', first_name='あおと', last_name='佐々木')
             db.session.add_all([user1, user2, user3])
             db.session.commit()
 
             # IdeaPostのシードデータ
-            post1 = IdeaPost(user_id=user1.id, title='アイデア1', message='アイデア1の内容', date=datetime(2023, 10, 26, 10, 0, 0), main_category='テクノロジー', sub_category='AI', kanatta='未達成')
-            post2 = IdeaPost(user_id=user2.id, title='アイデア2', message='アイデア2の内容', date=datetime(2023, 10, 26, 11, 0, 0), main_category='ビジネス', sub_category='マーケティング', kanatta='達成')
-            post3 = IdeaPost(user_id=user1.id, title='アイデア3', message='アイデア3の内容', date=datetime(2023, 10, 27, 12, 0, 0), main_category='エンタメ', sub_category='映画', kanatta='進行中')
-            post4 = IdeaPost(user_id=user3.id, title='アイデア4', message='アイデア4の内容', date=datetime(2023, 10, 28, 13, 0, 0), main_category='ライフスタイル', sub_category='旅行', kanatta='未達成')
+            post1 = IdeaPost(user_id=user1.id, title='ミニトマトの個別売り', message='ミニトマトがばら売りになっててほしい', date=datetime(2023, 10, 26, 10, 0, 0), main_category='テクノロジー', sub_category='AI', kanatta='未達成')
+            post2 = IdeaPost(user_id=user2.id, title='自動お風呂掃除機', message='お風呂掃除って意外と重労働なのよ～。腰がね痛くて。。。', date=datetime(2023, 10, 26, 11, 0, 0), main_category='ビジネス', sub_category='マーケティング', kanatta='達成')
+            post3 = IdeaPost(user_id=user1.id, title='ベビーフード自販機', message='ベビーフードの自販機があればいいなー。缶ミルクも売っててほしい。', date=datetime(2023, 10, 27, 12, 0, 0), main_category='エンタメ', sub_category='映画', kanatta='進行中')
+            post4 = IdeaPost(user_id=user3.id, title='子供乗せ用レンタサイクル', message='電車もバスも車も嫌がる子どもを連れて帰る手立てがありません。', date=datetime(2023, 10, 28, 13, 0, 0), main_category='ライフスタイル', sub_category='旅行', kanatta='未達成')
             db.session.add_all([post1, post2, post3, post4])
             db.session.commit()
 

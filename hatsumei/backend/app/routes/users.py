@@ -1,4 +1,5 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, make_response
+import json
 from app.models.user import User
 from app.schemas.user_schema import UserSchema
 from app import db
@@ -14,17 +15,21 @@ def get_users():
     users = User.query.all()
     print(f"Users fetched: {users}")  # ここでユーザーが正しく取得できているか確認
     
-    # users_schema.dumpの前後にprintを追加してみます
     result = users_schema.dump(users)
     print(f"Users schema dump result: {result}")  # スキーマのダンプ結果を確認
     
-    return jsonify(result)
+    # json.dumps を使って ensure_ascii=False を適用
+    response = make_response(json.dumps(result, ensure_ascii=False))
+    response.headers["Content-Type"] = "application/json; charset=utf-8"
 
+    return response
 
 @users_bp.route('/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     user = User.query.get_or_404(user_id)
-    return user_schema.jsonify(user)
+    response = make_response(json.dumps(user_schema.dump(user), ensure_ascii=False))
+    response.headers["Content-Type"] = "application/json; charset=utf-8"
+    return response
 
 @users_bp.route('/users', methods=['POST'])
 def create_user():
@@ -32,7 +37,10 @@ def create_user():
     new_user = user_schema.load(data)
     db.session.add(new_user)
     db.session.commit()
-    return user_schema.jsonify(new_user), 201
+    
+    response = make_response(json.dumps(user_schema.dump(new_user), ensure_ascii=False), 201)
+    response.headers["Content-Type"] = "application/json; charset=utf-8"
+    return response
 
 @users_bp.route('/users/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
@@ -40,7 +48,10 @@ def update_user(user_id):
     data = request.get_json()
     updated_user = user_schema.load(data, instance=user)
     db.session.commit()
-    return user_schema.jsonify(updated_user)
+    
+    response = make_response(json.dumps(user_schema.dump(updated_user), ensure_ascii=False))
+    response.headers["Content-Type"] = "application/json; charset=utf-8"
+    return response
 
 @users_bp.route('/users/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):

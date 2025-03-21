@@ -69,7 +69,7 @@ const RecruitedPage = () => {
                       <div className="p-4">
                         <h3 className="text-xl font-semibold">{post.title}</h3>
                         <div className="mt-2 text-sm text-gray-500">
-                          by {user?.nickname}
+                           {user?.first_name}
                         </div>
                       </div>
                     </div>

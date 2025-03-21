@@ -9,7 +9,7 @@ export default function IdeaPostPage() {
   const router = useRouter(); 
   const form = useRef<HTMLFormElement>(null);
 
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [main_category, setMainCategory] = useState("");
@@ -21,7 +21,7 @@ export default function IdeaPostPage() {
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    if (!name || !title || !message || !main_category || !subCategory) {
+    if ( !title || !message || !main_category || !subCategory) {
       alert("すべてのフィールドを入力してください");
       return;
     }
@@ -71,7 +71,7 @@ export default function IdeaPostPage() {
           className="w-full mt-7 max-w-lg flex flex-col space-y-6"
           onSubmit={handleSubmit}
         >
-          {/* name */}
+          {/* name
             <label htmlFor="name" className="block mb-2 text-gray-700">
               name
             </label>
@@ -82,7 +82,7 @@ export default function IdeaPostPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               name="user_name"
-            />
+            /> */}
 
               <label
                 htmlFor="main_category"

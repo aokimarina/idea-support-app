@@ -58,14 +58,16 @@ export const addIdeaPost = async (data: Omit<IdeaPostType, "id">) => {
   return newData;
 };
 
+
+//TODO:あとで機能たす
 //--------------------DELETE---------------------
 
-export const deleteIdeaPost = async (id: number) => {
-  const response = await fetch(`http://localhost:5000/idea_posts/id`, {
-    method: `DELETE`,
-  });
+// export const deleteIdeaPost = async (id: number) => {
+//   const response = await fetch(`http://localhost:5000/idea_posts/id`, {
+//     method: `DELETE`,
+//   });
 
-  if (!response.ok) {
-    throw new Error(`削除に失敗しました`);
-  }
-};
+//   if (!response.ok) {
+//     throw new Error(`削除に失敗しました`);
+//   }
+// };
