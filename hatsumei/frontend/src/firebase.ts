@@ -1,7 +1,9 @@
+// firebase.ts
 "use client";
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,7 +15,11 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+
 const app = initializeApp(firebaseConfig);
 
+// サービスのインスタンス化
 const auth = getAuth(app);
-export { auth };
+const db = getFirestore(app);
+
+export { app, auth, db };
