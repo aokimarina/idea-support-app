@@ -2,35 +2,21 @@
 
 import React, { useState, useEffect } from "react";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
   onAuthStateChanged,
   User,
 } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import FooterPage from "../components/layouts/footer/page";
+import { auth } from '@/firebase';
+import FooterPage from "../components/layouts/footer";
+import { useRouter } from "next/navigation";
 
-// Firebase設定（環境変数を推奨）
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: "section7-hatsumei.firebaseapp.com",
-  projectId: "section7-hatsumei",
-  storageBucket: "section7-hatsumei.firebasestorage.app",
-  messagingSenderId: "263106941602",
-  appId: "1:263106941602:web:cd49a5db5582704472bdfb",
-};
 
-// Firebaseアプリを初期化
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-const Login = ({ onLogout }: { onLogout: () => void }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // 認証状態を監視
@@ -46,22 +32,11 @@ const Login = ({ onLogout }: { onLogout: () => void }) => {
     return () => unsubscribe();
   }, []);
 
-  // 新規登録処理
-  const handleRegister = async () => {
-    setLoading(true);
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      alert("登録に成功しました");
-    } catch (error) {
-      alert(
-        "登録できません（" +
-          (error instanceof Error ? error.message : "不明なエラー") +
-          "）"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+
+  // 新規登録ページへ遷移
+const handleRegister = () => {
+  router.push("/createAccountForm");
+};
 
   // ログイン処理
   const handleLogin = async () => {
@@ -69,30 +44,12 @@ const Login = ({ onLogout }: { onLogout: () => void }) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("ログインに成功しました");
+      router.push('/memberPages/${users.firebase_uid}');
     } catch (error) {
       alert(
         "ログインできません（" +
           (error instanceof Error ? error.message : "不明なエラー") +
           "）"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // ログアウト処理
-  const handleLogout = async () => {
-    try {
-      setLoading(true);
-      await signOut(auth);
-      onLogout();
-      alert("ログアウトしました");
-    } catch (error) {
-      console.error(error);
-      alert(
-        `ログアウトに失敗しました: ${
-          error instanceof Error ? error.message : "不明なエラー"
-        }`
       );
     } finally {
       setLoading(false);
@@ -125,32 +82,22 @@ const Login = ({ onLogout }: { onLogout: () => void }) => {
               />
             </div>
             <div className="flex items-center justify-between px-6 pb-4">
-              {!user ? (
-                <>
-                  <button
-                    onClick={handleRegister}
-                    className="ml-4 bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-6 rounded transition-all duration-200 active:scale-95"
-                    disabled={loading}
-                  >
-                    {loading ? "Registering..." : "新規登録"}
-                  </button>
-                  <button
-                    onClick={handleLogin}
-                    className="mr-4 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-6 rounded transition-all duration-200 active:scale-95"
-                    disabled={loading}
-                  >
-                    {loading ? "Login..." : "Login"}
-                  </button>
-                </>
-              ) : (
+              <>
                 <button
-                  onClick={handleLogout}
-                  className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition-all duration-200 active:scale-95"
+                  onClick={handleRegister}
+                  className="ml-4 bg-blue-900 hover:bg-blue-950 text-white font-bold py-2 px-6 rounded transition-all duration-200 active:scale-95 cursor-pointer"
                   disabled={loading}
                 >
-                  {loading ? "Logging out..." : "Logout"}
+                  {loading ? "Registering..." : "新規登録"}
                 </button>
-              )}
+                <button
+                  onClick={handleLogin}
+                  className="mr-4 bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-6 rounded transition-all duration-200 active:scale-95 cursor-pointer"
+                  disabled={loading}
+                >
+                  {loading ? "Login..." : "Login"}
+                </button>
+              </>
             </div>
           </div>
         </div>

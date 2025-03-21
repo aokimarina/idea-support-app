@@ -1,12 +1,10 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { useWindowSize } from "../../../../hooks/GetWindowSize";
-import { users, idea_posts } from "../../../../mocks/page"; // モックデータをインポート
+import Image from "next/image";
+import { users, idea_posts } from "../../../../mocks/page";
 
 const RecruitedPage = () => {
-  const { height, width } = useWindowSize();
-
   // 画像リスト
   const images = [
     "/irasto/買い物.png",
@@ -18,43 +16,67 @@ const RecruitedPage = () => {
   ];
 
   return (
-    <section>
-      <div className="flex justify-center items-center mt-10 text-[25px]">
-        -----💡💡 このサイトでこんなことが叶いました 💡💡-----
+    <section className="mt-28 ">
+      <div className="flex justify-center items-center py-5 mt-10 text-3xl border-t-blue-950 border-b-blue-300 border-b-8 rampart-one-regular text-blue-950 font-bold">
+
+      Ideas realized
+  
       </div>
 
-      <div className="flex justify-center items-center mt-10 mb-20 bg-white relative">
+      <div className="flex justify-center items-center mb-20 bg-white relative">
         <div className="px-3 max-w-screen-xl w-full">
-          <div className="flex overflow-x-auto py-4 px-2 gap-4">
-            {" "}
-            {idea_posts.map((post, index) => {
-              const user = users.find((u) => u.id === post.user_id);
-              const image = images[index % images.length];
+          <div className="scroll-infinity__wrap">
+            <ul className="scroll-infinity__list scroll-infinity__list--left">
+              {idea_posts.map((post, index) => {
+                const user = users.find((u) => u.id === post.user_id);
+                const image = images[index % images.length];
 
-              return (
-                <div
-                  key={post.id}
-                  className="flex-none w-[calc(25%-20px)] h-auto p-4 bg-gray-100 shadow-lg rounded-lg"
-                >
-                  <div className="relative w-full">
-                    <Link href={`/post/${post.id}`}>
-                      <img
-                        src={image}
-                        alt="投稿画像"
-                        className="w-full h-[200px] object-cover rounded-t-lg cursor-pointer"
-                      />
-                    </Link>
-                    <div className="p-4">
-                      <h3 className="text-xl font-semibold">{post.title}</h3>
-
-                      <div className="mt-2 text-sm text-gray-500">
-                        by {user?.nickname}
+                return (
+                  <li key={post.id} className="scroll-infinity__item">
+                    <div className="relative">
+                      <Link href={`/post/${post.id}`}>
+                        <img
+                          src={image}
+                          alt="投稿画像"
+                          className="w-full h-[200px] object-cover rounded-t-lg cursor-pointer"
+                        />
+                      </Link>
+                      <div className="p-4">
+                        <h3 className="text-xl font-semibold">{post.title}</h3>
+                        <div className="mt-2 text-sm text-gray-500">
+                          by {user?.nickname}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                  </li>
+                );
+              })}
+              {/* 無限スクロールのためにリストを複製 */}
+              {idea_posts.map((post, index) => {
+                const user = users.find((u) => u.id === post.user_id);
+                const image = images[index % images.length];
+
+                return (
+                  <li key={`duplicate-${post.id}`} className="scroll-infinity__item">
+                    <div className="relative">
+                      <Link href={`/post/${post.id}`}>
+                        <img
+                          src={image}
+                          alt="投稿画像"
+                          className="w-full h-[200px] object-cover rounded-t-lg cursor-pointer"
+                        />
+                      </Link>
+                      <div className="p-4">
+                        <h3 className="text-xl font-semibold">{post.title}</h3>
+                        <div className="mt-2 text-sm text-gray-500">
+                          by {user?.nickname}
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </div>
