@@ -1,31 +1,23 @@
 const users = [
   {
     id: 1,
-    email: "msasaki11142@gmail.com",
-    firebase_uid: "F3Tpfw7PQJT9fKOu2tIU2laKcS43",
-    first_name: "sasaki",
-    last_name: "madoka",
-    nickname: "てるちゃん",
-  },
-  {
-    id: 2,
-    email: "user2@example.com",
+    email: "user1@example.com",
     firebase_uid: "uid_def456",
     first_name: "花子",
     last_name: "佐藤",
     nickname: "はな",
   },
   {
-    id: 3,
-    email: "user3@example.com",
+    id: 2,
+    email: "user2@example.com",
     firebase_uid: "uid_ghi789",
     first_name: "健一",
     last_name: "高橋",
     nickname: "けんけん",
   },
   {
-    id: 4,
-    email: "user4@example.com",
+    id: 3,
+    email: "user3@example.com",
     firebase_uid: "uid_jkl012",
     first_name: "美咲",
     last_name: "田中",
@@ -110,10 +102,10 @@ const idea_posts = [
 ];
 
 const metos = [
-  { id: "1", user_id: "1", idea_post_id: "2" , firebase_uid: "F3Tpfw7PQJT9fKOu2tIU2laKcS43"},
+  { id: "1", user_id: "1", idea_post_id: "2", firebase_uid: "123" },
   { id: "2", user_id: "2", idea_post_id: "3" },
   { id: "3", user_id: "3", idea_post_id: "4" },
-  { id: "4", user_id: "1", idea_post_id: "1" , firebase_uid: "F3Tpfw7PQJT9fKOu2tIU2laKcS43"},
+  { id: "4", user_id: "1", idea_post_id: "1", firebase_uid: "456" },
 ];
 
 const forms = [

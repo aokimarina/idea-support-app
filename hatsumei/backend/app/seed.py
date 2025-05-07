@@ -8,9 +8,9 @@ def seed_data(app):
             db.create_all()
 
             # Userのシードデータ
-            user1 = User(email='msasaki11142@gmail.com', firebase_uid='F3Tpfw7PQJT9fKOu2tIU2laKcS43', first_name='てるちゃん', last_name='ささき')
-            user2 = User(email='hinapi1124@gmail.com', firebase_uid='oSpuGGDVoTNQxQpVVK8KAMKunVy2', first_name='ひなた', last_name='ささき')
-            user3 = User(email='masasa2419@gmail.com', firebase_uid='vv3uRsN4rWYKlP81MTiP3nJASbn1', first_name='あおと', last_name='佐々木')
+            user1 = User(email='1@gmail.com', firebase_uid='123', first_name='1', last_name='1')
+            user2 = User(email='2@gmail.com', firebase_uid='456', first_name='2', last_name='2')
+            user3 = User(email='3@gmail.com', firebase_uid='789', first_name='3', last_name='3')
             db.session.add_all([user1, user2, user3])
             db.session.commit()
 

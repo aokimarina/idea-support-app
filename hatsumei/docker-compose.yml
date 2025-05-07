@@ -5,7 +5,10 @@ services:
     container_name: postgres_hatsumei
     restart: always
     environment:
-//TODO:追加
+      #TODO:追加(1)
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+      POSTGRES_DB:
     ports:
       - "5432:5432"
     volumes:
@@ -23,7 +26,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: postgresql://sasao_user:sasao_pass@postgres:5432/postgres_hatsumei
+      DATABASE_URL: #TODO:追加(2)
       FLASK_APP: run.py
     depends_on:
       postgres:
